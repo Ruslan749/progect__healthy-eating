@@ -1,0 +1,36 @@
+1) npm init   // пакет node .js
+2)  npm install webpack@4.x  webpack-cli@3.x --save-dev // пакет webpack
+3) npm install --save lodash
+4) npx webpack --config webpack.config.js применение заданых настроек
+
+5) настройка файла webpack.config.js
+
+
+'use strict';
+
+let path = require('path');
+
+module.exports = {
+  mode: 'development', // способ компиляции (сжатый или нет)
+  entry: './js/index.js', // путь к главному файлу
+  output: {
+    filename: 'bundle.js', // имя готового компилированого файла
+    path: __dirname + '/js' // папка расположения готового файла
+  },
+  watch: true, // отслеживание и компиляция изменений в скриптовых файлах
+
+  devtool: "source-map", // файл для поиска в браузере
+
+  module: { // модули
+
+  }
+};
+
+6) настройка в  package.json  в скрипт добавить конфигурацию  "build": "webpack"
+
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+
+7) запуск пакета npx webpack

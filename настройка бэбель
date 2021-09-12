@@ -1,0 +1,38 @@
+1) npm install --save-dev @babel/core @babel/cli @babel/preset-env
+2) npm install --save @babel/polyfill
+3) в package.json добавить после "license": "ISC", браузеры которые мы хотим потдерживать
+
+  "browserslist": [
+    ">1%"
+  ],
+4) в webpack.config.js добавить модули
+
+
+ module: {
+    rules: [ // правила
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/, // какие фыйлы нам нужно исключить
+        use: {
+          loader: 'babel-loader', // используем loader он связывает webpack c babel
+          options: {
+            presets: [['@babel/preset-env', { // пресеты
+                debug: true, //  позволяет увидить во время компиляции какие могут быть проблеммы
+                corejs: 3, 
+                useBuiltIns: "usage"
+            }]]
+          }
+        }
+      }
+    ]
+  }
+
+5) npm i --save-dev babel-loader  // устанавливаем loader
+
+6) npm i --save-dev core-js  // библиотека  core-js 
+
+установка палифилов в ручную
+
+1) набираем интерисующий нас полифил
+2) npm install es6-promise  // скачиваем npm пакет 
+3) require('es6-promise').polyfill(); //вставляем в главный файл в самый верх для автоматической работы
